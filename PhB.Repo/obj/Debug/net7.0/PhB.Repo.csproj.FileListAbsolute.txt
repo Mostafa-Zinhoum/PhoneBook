@@ -1,0 +1,17 @@
+D:\Training\PhoneBook\PhB.Repo\bin\Debug\net7.0\PhB.Repo.deps.json
+D:\Training\PhoneBook\PhB.Repo\bin\Debug\net7.0\PhB.Repo.runtimeconfig.json
+D:\Training\PhoneBook\PhB.Repo\bin\Debug\net7.0\PhB.Repo.dll
+D:\Training\PhoneBook\PhB.Repo\bin\Debug\net7.0\PhB.Repo.pdb
+D:\Training\PhoneBook\PhB.Repo\bin\Debug\net7.0\PhB.Data.dll
+D:\Training\PhoneBook\PhB.Repo\bin\Debug\net7.0\PhB.Data.pdb
+D:\Training\PhoneBook\PhB.Repo\obj\Debug\net7.0\PhB.Repo.csproj.AssemblyReference.cache
+D:\Training\PhoneBook\PhB.Repo\obj\Debug\net7.0\PhB.Repo.GeneratedMSBuildEditorConfig.editorconfig
+D:\Training\PhoneBook\PhB.Repo\obj\Debug\net7.0\PhB.Repo.AssemblyInfoInputs.cache
+D:\Training\PhoneBook\PhB.Repo\obj\Debug\net7.0\PhB.Repo.AssemblyInfo.cs
+D:\Training\PhoneBook\PhB.Repo\obj\Debug\net7.0\PhB.Repo.csproj.CoreCompileInputs.cache
+D:\Training\PhoneBook\PhB.Repo\obj\Debug\net7.0\PhB.Repo.csproj.CopyComplete
+D:\Training\PhoneBook\PhB.Repo\obj\Debug\net7.0\PhB.Repo.dll
+D:\Training\PhoneBook\PhB.Repo\obj\Debug\net7.0\refint\PhB.Repo.dll
+D:\Training\PhoneBook\PhB.Repo\obj\Debug\net7.0\PhB.Repo.pdb
+D:\Training\PhoneBook\PhB.Repo\obj\Debug\net7.0\PhB.Repo.genruntimeconfig.cache
+D:\Training\PhoneBook\PhB.Repo\obj\Debug\net7.0\ref\PhB.Repo.dll
