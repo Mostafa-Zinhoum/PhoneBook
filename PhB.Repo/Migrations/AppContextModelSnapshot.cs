@@ -220,6 +220,45 @@ namespace PhB.Repo.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("PhB.Data.Center", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<long?>("GovernorateId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GovernorateId");
+
+                    b.ToTable("Centers");
+                });
+
+            modelBuilder.Entity("PhB.Data.Governorate", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Governorates");
+                });
+
             modelBuilder.Entity("PhB.Data.Job", b =>
                 {
                     b.Property<long>("Id")
@@ -252,9 +291,11 @@ namespace PhB.Repo.Migrations
                     b.Property<DateTime>("Birthday")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Image")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<long?>("CenterId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("GovernorateId")
+                        .HasColumnType("bigint");
 
                     b.Property<long?>("JobId")
                         .HasColumnType("bigint");
@@ -277,9 +318,39 @@ namespace PhB.Repo.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CenterId");
+
+                    b.HasIndex("GovernorateId");
+
                     b.HasIndex("JobId");
 
                     b.ToTable("PhoneBooks");
+                });
+
+            modelBuilder.Entity("PhB.Data.PhoneBook_Image", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long?>("PhoneBookId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PhoneBookId");
+
+                    b.ToTable("PhoneBook_Images");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -333,13 +404,46 @@ namespace PhB.Repo.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("PhB.Data.Center", b =>
+                {
+                    b.HasOne("PhB.Data.Governorate", "Governorate")
+                        .WithMany()
+                        .HasForeignKey("GovernorateId");
+
+                    b.Navigation("Governorate");
+                });
+
             modelBuilder.Entity("PhB.Data.PhoneBook", b =>
                 {
+                    b.HasOne("PhB.Data.Center", "Center")
+                        .WithMany()
+                        .HasForeignKey("CenterId");
+
+                    b.HasOne("PhB.Data.Governorate", "Governorate")
+                        .WithMany()
+                        .HasForeignKey("GovernorateId");
+
                     b.HasOne("PhB.Data.Job", "Job")
                         .WithMany()
                         .HasForeignKey("JobId");
 
+                    b.Navigation("Center");
+
+                    b.Navigation("Governorate");
+
                     b.Navigation("Job");
+                });
+
+            modelBuilder.Entity("PhB.Data.PhoneBook_Image", b =>
+                {
+                    b.HasOne("PhB.Data.PhoneBook", null)
+                        .WithMany("Images")
+                        .HasForeignKey("PhoneBookId");
+                });
+
+            modelBuilder.Entity("PhB.Data.PhoneBook", b =>
+                {
+                    b.Navigation("Images");
                 });
 #pragma warning restore 612, 618
         }

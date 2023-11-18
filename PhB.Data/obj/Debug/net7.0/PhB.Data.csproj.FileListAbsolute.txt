@@ -9,3 +9,14 @@ D:\Training\PhoneBook\PhB.Data\obj\Debug\net7.0\PhB.Data.dll
 D:\Training\PhoneBook\PhB.Data\obj\Debug\net7.0\refint\PhB.Data.dll
 D:\Training\PhoneBook\PhB.Data\obj\Debug\net7.0\PhB.Data.pdb
 D:\Training\PhoneBook\PhB.Data\obj\Debug\net7.0\ref\PhB.Data.dll
+D:\Training\PhoneBook\PhoneBook\PhB.Data\bin\Debug\net7.0\PhB.Data.deps.json
+D:\Training\PhoneBook\PhoneBook\PhB.Data\bin\Debug\net7.0\PhB.Data.dll
+D:\Training\PhoneBook\PhoneBook\PhB.Data\bin\Debug\net7.0\PhB.Data.pdb
+D:\Training\PhoneBook\PhoneBook\PhB.Data\obj\Debug\net7.0\PhB.Data.GeneratedMSBuildEditorConfig.editorconfig
+D:\Training\PhoneBook\PhoneBook\PhB.Data\obj\Debug\net7.0\PhB.Data.AssemblyInfoInputs.cache
+D:\Training\PhoneBook\PhoneBook\PhB.Data\obj\Debug\net7.0\PhB.Data.AssemblyInfo.cs
+D:\Training\PhoneBook\PhoneBook\PhB.Data\obj\Debug\net7.0\PhB.Data.csproj.CoreCompileInputs.cache
+D:\Training\PhoneBook\PhoneBook\PhB.Data\obj\Debug\net7.0\PhB.Data.dll
+D:\Training\PhoneBook\PhoneBook\PhB.Data\obj\Debug\net7.0\refint\PhB.Data.dll
+D:\Training\PhoneBook\PhoneBook\PhB.Data\obj\Debug\net7.0\PhB.Data.pdb
+D:\Training\PhoneBook\PhoneBook\PhB.Data\obj\Debug\net7.0\ref\PhB.Data.dll

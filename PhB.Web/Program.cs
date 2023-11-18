@@ -22,9 +22,13 @@ builder.Services.AddDbContext<PhB.Repo.AppContext>(option =>
 
 builder.Services.AddIdentity<IdentityUser,IdentityRole>().AddEntityFrameworkStores<PhB.Repo.AppContext>();
 
+
+builder.Services.AddScoped(typeof(IUnitOfWork), typeof(UnitOfWork));
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped(typeof(IPhoneBookService), typeof(PhoneBookService));
 builder.Services.AddScoped(typeof(IJobService), typeof(JobService));
+builder.Services.AddScoped(typeof(IGovernorateService), typeof(GovernorateService));
+builder.Services.AddScoped(typeof(ICenterService), typeof(CenterService));
 
 
 builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");

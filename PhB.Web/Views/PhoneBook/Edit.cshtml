@@ -2,7 +2,8 @@
 
 @{
     ViewData["Title"] = "Edit";
-    var filePath = Model == null ? string.Empty : Model.ImagePath;
+    List<PathInfo> imgs = (List<PathInfo>)ViewData["Images"];
+    // var filePath = Model == null ? string.Empty : Model.ImagePath;
 }
 
 
@@ -10,16 +11,59 @@
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
+<style>
+    body {
+        font-family: Arial;
+    }
+
+    /* Style the tab */
+    .tab {
+        overflow: hidden;
+        border: 1px solid #ccc;
+        background-color: #f1f1f1;
+    }
+
+        /* Style the buttons inside the tab */
+        .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            font-size: 17px;
+        }
+
+            /* Change background color of buttons on hover */
+            .tab button:hover {
+                background-color: #ddd;
+            }
+
+            /* Create an active/current tablink class */
+            .tab button.active {
+                background-color: #ccc;
+            }
+
+    /* Style the tab content */
+    .tabcontent {
+        display: none;
+        padding: 6px 12px;
+        border: 1px solid #ccc;
+        border-top: none;
+    }
+</style>
+
 
 <h1>@Resource.GetString("Edit")</h1>
 
 
 <hr />
 <div class="row">
-    <div class="col-md-4">
-        <form name="create-form" asp-action="Edit" enctype="multipart/form-data">
+    <div class="col-md-12">
+        <form name="create-form" asp-action="Edit" enctype="multipart/form-data" onsubmit="AJAXSubmit(this);return false;">
             <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-group">
+            @* <div class="form-group">
                 <label asp-for="name" class="control-label">@Resource.GetString("Name")</label>
                 <input asp-for="name" class="form-control" />
                 <span asp-validation-for="name" class="text-danger"></span>
@@ -27,9 +71,7 @@
             
             <div class="form-group">
                 <img src="@Url.Content(filePath)" alt="IMAGES" style="width: 350px; height: 200px;" />
-                @* <label asp-for="Image" class="control-label"></label> *@
-                <input asp-for="Image" class="form-control" />
-                @* <span asp-validation-for="name" class="text-danger"></span> *@
+                <input asp-for="Images" class="form-control" />
             </div>
             <div class="form-group">
                 <label asp-for="Birthday" class="control-label">@Resource.GetString("Birthday")</label>
@@ -67,11 +109,91 @@
                 <label asp-for="Id" class="control-label"></label>
                 <input asp-for="Id" class="form-control" />
                 <span asp-validation-for="Id" class="text-danger"></span>
+            </div> *@
+            <div class="tab">
+                <button class="tablinks" onclick="openCity(event, 'Info')" id="defaultOpen">@Resource.GetString("MainInfo")</button>
+                <button class="tablinks" onclick="openCity(event, 'Img')">@Resource.GetString("Images")</button>
+                <button class="tablinks" onclick="openCity(event, 'Add')">@Resource.GetString("Address")</button>
             </div>
-            <div class="form-group">
-                <input type="submit" value=@Resource.GetString("Save") class="btn btn-primary" />
-                
+
+            <div id="Info" class="tabcontent">
+                <div class="form-group">
+                    <label asp-for="name" class="control-label">@Resource.GetString("Name")</label>
+                    <input asp-for="name" class="form-control" />
+                    <span asp-validation-for="name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Birthday" class="control-label">@Resource.GetString("Birthday")</label>
+                    <input asp-for="Birthday" class="form-control" type="date" asp-format="{0:dd/MM/yyyy}" />
+                    <span asp-validation-for="Birthday" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">@Resource.GetString("Job")</label>
+                    <select id="JobId" name="JobId" class="form-control">
+                        <option value="null">Select</option>
+                    </select>
+                    <span asp-validation-for="JobId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PhoneNo1" class="control-label">@Resource.GetString("PhoneNo1")</label>
+                    <input asp-for="PhoneNo1" class="form-control" />
+                    <span asp-validation-for="PhoneNo1" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PhoneNo2" class="control-label">@Resource.GetString("PhoneNo2")</label>
+                    <input asp-for="PhoneNo2" class="form-control" />
+                    <span asp-validation-for="PhoneNo2" class="text-danger"></span>
+                </div>
             </div>
+
+            <div id="Img" class="tabcontent">
+                <div class="form-group">
+                    @{
+                        if (imgs != null)
+                        {
+                            foreach (var img in imgs)
+                            {
+                                <div class="form-group">
+                                    <a href="@Url.Content(img.FilePath)">@img.FileName</a>
+                                </div>
+                                // <img src="@Url.Content(img.Path)" alt="IMAGES" style="width: 350px; height: 200px;" />
+                            }
+                        }
+                    }
+                    <input asp-for="Images" class="form-control" type="file" multiple />
+                </div>
+            </div>
+
+            <div id="Add" class="tabcontent">
+                <div class="form-group">
+                    <label class="control-label">@Resource.GetString("Governorates")</label>
+                    <select id="GovId" name="GovId" class="form-control" onchange="FillData()">
+                        <option value="Select">Select</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">@Resource.GetString("Centers")</label>
+                    <select id="centerId" name="centerId" class="form-control">
+                        <option value="Select">Select</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Address" class="control-label">@Resource.GetString("Address")</label>
+                    <input asp-for="Address" class="form-control" />
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Notes" class="control-label">@Resource.GetString("Notes")</label>
+                    <input asp-for="Notes" class="form-control" />
+                    <span asp-validation-for="Notes" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value=@Resource.GetString("Save") class="btn btn-primary" />
+
+                </div>
+            </div>
+            
         </form>
         
     </div>
@@ -104,56 +226,11 @@
 
     <script>
         $(document).ready(function () {
-            // $("#Birthday").val(moment(new Date()).format('YYYY-MM-DD'));
-            //var ee = $("#editForm");
-            debugger;
-
-            // Handle form submission
-            $('#create-form').submit(function (event) {
-                event.preventDefault(); // Prevent normal form submission
-                debugger;
-                // Show confirmation dialog
-                bootbox.confirm("Are you sure you want to submit the form?", function (result) {
-                    if (result) {
-                        // User confirmed, submit the form
-                        $('#create-form').off('submit').submit();
-                    }
-                });
-            });
-
-
-
-
+           
+            $("#Birthday").val(moment(new Date()).format('YYYY-MM-DD'));
             fload();
-        });
-
-        function confirmSubmit() {
-            debugger;
-            // var currentform = $("#editForm");
-            // e.preventDefualt();
-            // bootbox.confirm({
-            //     message: "This is a confirm with custom button text and color! Do you like it?",
-            //     buttons: {
-            //         confirm: {
-            //             label: 'Yes',
-            //             className: 'btn-success'
-            //         },
-            //         cancel: {
-            //             label: 'No',
-            //             className: 'btn-danger'
-            //         }
-            //     },
-            //     callback: function (result) {
-            //         bootbox.alert('This was logged in the callback: ' + result);
-            //     }
-            // });
-        }
-
-        // // bootbox.confirm("are you sure?", function (result) {
-        // //     if (result) {
-        // //         currentform.submit();
-        // //     }
-        // // });
+            Govload();
+        });        
 
         function fload() {
             var val = @Json.Serialize(Model);
@@ -180,6 +257,102 @@
                 }
             });
         }
+
+        function Govload() {
+            $.ajax({
+                url: "/phoneBook/governorates",
+                type: "Get",
+                success: function (data) {
+                    $('#GovId').html('');
+                    var options = '';
+                    options += '<option value="null">Select</option>';
+                    for (var i = 0; i < data.length; i++) {
+                        options += '<option value="' + data[i].id + '">' + data[i].name + '</option>';
+                    }
+                    $('#GovId').append(options);
+                },
+                error: function (result) {
+                    alert("Error");
+                }
+            });
+        }
+
+
+        function FillData() {
+            var param = $('#GovId').val();
+            $.ajax({
+                url: "/phoneBook/centers",
+                type: "POST",
+                data: { "governorateId": param },
+                success: function (data) {
+                    $('#centerId').html('');
+                    var options = '';
+                    options += '<option value="Select">Select</option>';
+                    for (var i = 0; i < data.length; i++) {
+                        options += '<option value="' + data[i].id + '">' + data[i].name + '</option>';
+                    }
+                    $('#centerId').append(options);
+                },
+                error: function (result) {
+                    alert("Error");
+                }
+            });
+        }
+
+        function openCity(evt, name) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(name).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        // Get the element with id="defaultOpen" and click on it
+        document.getElementById("defaultOpen").click();
+
+
+        async function AJAXSubmit(oFormElement) {
+            var resultElement = oFormElement.elements.namedItem("result");
+            const formData = new FormData(oFormElement);
+
+            try {
+                const response = await fetch(oFormElement.action, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (response.ok) { //response.ok
+                    debugger;
+                    const data = await response.json();
+                    console.log(data);
+                    if (data.success) {
+                        toastr.success(data.message);
+
+                        setTimeout(function () {
+                            window.location.href = '/phoneBook/index';
+                        }, 1000);
+
+
+                    }
+                    else {
+                        toastr.error(data.message);
+                    }
+
+                }
+                resultElement.value = 'Result: ' + response.status + ' ' +
+                    response.statusText;
+
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
     </script>
 
 

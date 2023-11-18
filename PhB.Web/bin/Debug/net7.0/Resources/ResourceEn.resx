@@ -126,6 +126,9 @@
   <data name="Birthday" xml:space="preserve">
     <value>Birthday</value>
   </data>
+  <data name="Centers" xml:space="preserve">
+    <value>Centers</value>
+  </data>
   <data name="Confirmpassword" xml:space="preserve">
     <value>Confirmpassword</value>
   </data>
@@ -150,17 +153,32 @@
   <data name="Email" xml:space="preserve">
     <value>Email</value>
   </data>
+  <data name="Governorates" xml:space="preserve">
+    <value>Governorates</value>
+  </data>
   <data name="Image" xml:space="preserve">
     <value>Image</value>
   </data>
+  <data name="Images" xml:space="preserve">
+    <value>الصور</value>
+  </data>
   <data name="Job" xml:space="preserve">
     <value>Job</value>
+  </data>
+  <data name="List" xml:space="preserve">
+    <value>List</value>
   </data>
   <data name="Login" xml:space="preserve">
     <value>Login</value>
   </data>
   <data name="Logout" xml:space="preserve">
     <value>Logout</value>
+  </data>
+  <data name="MainInfo" xml:space="preserve">
+    <value>البيانات الاساسية</value>
+  </data>
+  <data name="MainMenu" xml:space="preserve">
+    <value>Main Menu</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
@@ -170,6 +188,9 @@
   </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
+  </data>
+  <data name="PhoneBook" xml:space="preserve">
+    <value>Phone Book</value>
   </data>
   <data name="PhoneNo1" xml:space="preserve">
     <value>PhoneNo1</value>

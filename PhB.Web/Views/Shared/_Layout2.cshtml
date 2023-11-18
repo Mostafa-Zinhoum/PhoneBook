@@ -1,0 +1,61 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    string lang = @Resource.ArabicCulture ? "ar" : "en";
+    string dir = @Resource.ArabicCulture ? "rtl" : "ltr";
+}}
+<!DOCTYPE html>
+
+
+<span style="font-family: verdana, geneva, sans-serif;">
+    <html lang=@lang dir=@dir>
+        <head>
+            <meta charset="UTF-8" />
+            @* <title>Admin Dashboard | By Code Info</title>
+            <link rel="stylesheet" href="style.css" /> *@
+            <!-- Font Awesome Cdn Link -->
+            <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+            <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+            <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
+            <link rel="stylesheet" href="~/PhB.Web.styles.css" asp-append-version="true" />
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />        
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <title>@ViewData["Title"] - PhB.Web</title>
+        </head>
+        <body>
+            <header class="header">
+                <div class="logo">
+                <a href="#">@Resource.GetString("PhoneBook")</a>
+            </div>
+
+                <partial name="_MainNav"></partial>
+            </header>
+            <div class="container">
+                <nav>
+                    <div class="side_navbar">
+                    <span>@Resource.GetString("MainMenu")</span>
+                    <a href="/phoneBook/Index" class="active">@Resource.GetString("List")</a>
+                    <a href="/phoneBook/Add">@Resource.GetString("CreateNew")</a>
+                        @* <a href="#">History</a>
+                        <a href="#">Application</a>
+                        <a href="#">My Account</a>
+                        <a href="#">Documnets</a> *@
+                        
+                    </div>
+                </nav>
+
+                <div class="main-body">
+                    @RenderBody()
+                </div>
+
+            
+            </div>
+
+            <script src="~/lib/jquery/dist/jquery.min.js"></script>
+            <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+            <script src="~/js/site.js" asp-append-version="true"></script>
+            @await RenderSectionAsync("Scripts", required: false)
+        </body>
+    </html>
+</span>

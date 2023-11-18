@@ -13,8 +13,8 @@ namespace PhB.Services
     {
         public IEnumerable<PhoneBook> GetPhoneBookList();
         public PhoneBook GetPhoneBookData(long id);
-        public void Create(IFormFile file, PhoneBook phoneBook);
-        public void Update(IFormFile file, PhoneBook phoneBook);
+        public void Create(List<IFormFile> file, PhoneBook phoneBook);
+        public void Update(List<IFormFile> file, PhoneBook phoneBook);
         public void Delete(long id);
     }
 }

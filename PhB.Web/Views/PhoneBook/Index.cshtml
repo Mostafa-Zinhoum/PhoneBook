@@ -21,7 +21,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
 
 
-<h1>Index</h1>
+<h1>@Resource.GetString("List")</h1>
 
 <p>
     <a asp-action="Add">@Resource.GetString("CreateNew")</a>
@@ -138,7 +138,7 @@
                         type: "POST",
                         data: { "id": val },
                         success: function () {
-                            toastr.success('Deleted Sucessfully');
+                        toastr.success('@Resource.GetString("DeleteSuccess")');
                         }
                     });
 

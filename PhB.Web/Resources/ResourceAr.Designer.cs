@@ -88,6 +88,15 @@ namespace PhB.Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to المراكز.
+        /// </summary>
+        internal static string Centers {
+            get {
+                return ResourceManager.GetString("Centers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to تاكيد كلمة المرور.
         /// </summary>
         internal static string Confirmpassword {
@@ -160,6 +169,15 @@ namespace PhB.Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to المحافظات.
+        /// </summary>
+        internal static string Governorates {
+            get {
+                return ResourceManager.GetString("Governorates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to صورة.
         /// </summary>
         internal static string Image {
@@ -169,11 +187,29 @@ namespace PhB.Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to الصور.
+        /// </summary>
+        internal static string Images {
+            get {
+                return ResourceManager.GetString("Images", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to الوظيفة.
         /// </summary>
         internal static string Job {
             get {
                 return ResourceManager.GetString("Job", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to القائمة.
+        /// </summary>
+        internal static string List {
+            get {
+                return ResourceManager.GetString("List", resourceCulture);
             }
         }
         
@@ -192,6 +228,24 @@ namespace PhB.Web.Resources {
         internal static string Logout {
             get {
                 return ResourceManager.GetString("Logout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to البيانات الاساسية.
+        /// </summary>
+        internal static string MainInfo {
+            get {
+                return ResourceManager.GetString("MainInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to القائمة الرئيسية.
+        /// </summary>
+        internal static string MainMenu {
+            get {
+                return ResourceManager.GetString("MainMenu", resourceCulture);
             }
         }
         
@@ -219,6 +273,15 @@ namespace PhB.Web.Resources {
         internal static string Password {
             get {
                 return ResourceManager.GetString("Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to دليل الهاتف.
+        /// </summary>
+        internal static string PhoneBook {
+            get {
+                return ResourceManager.GetString("PhoneBook", resourceCulture);
             }
         }
         

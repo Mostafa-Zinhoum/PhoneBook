@@ -16,13 +16,19 @@ namespace PhB.Web.Controllers
     {
         private readonly IPhoneBookService service;
         private readonly IJobService jobService;
+        private readonly ICenterService centerService;
+        private readonly IGovernorateService governorateService;
         private readonly IStringLocalizer<AccountController> localizer;
 
         public PhoneBookController(IPhoneBookService service, IJobService jobService
-            , IStringLocalizer<AccountController> localizer)
+            , IStringLocalizer<AccountController> localizer
+            , IGovernorateService governorateService
+            , ICenterService centerService)
         {
             this.service = service;
             this.jobService = jobService;
+            this.governorateService = governorateService;
+            this.centerService = centerService;
             this.localizer = localizer;
         }
 
@@ -38,6 +44,15 @@ namespace PhB.Web.Controllers
         {
             return Json(jobService.GetJobs());
         }
+        public IActionResult Governorates()
+        {
+            return Json(governorateService.GetGovernorates());
+        }
+        [HttpPost]
+        public IActionResult Centers(long governorateId)
+        {
+            return Json(centerService.GetCenters(governorateId));
+        }
 
         public IActionResult Add() 
         {
@@ -51,7 +66,7 @@ namespace PhB.Web.Controllers
             if(ModelState.IsValid)
             {
                 
-                service.Create(phoneBook.Image,new PhoneBook 
+                service.Create(phoneBook.Images,new PhoneBook 
                 { Address = phoneBook.Address,
                 Birthday = phoneBook.Birthday,
                 JobId = phoneBook.JobId,
@@ -71,7 +86,7 @@ namespace PhB.Web.Controllers
         public IActionResult Edit(long id) 
         {
             var ph = service.GetPhoneBookData(id);
-            return View(new PhoneBookModel
+            var data = new PhoneBookModel
             {
                 Address = ph.Address,
                 Birthday = ph.Birthday,
@@ -80,9 +95,16 @@ namespace PhB.Web.Controllers
                 name = ph.name,
                 Notes = ph.Notes,
                 PhoneNo1 = ph.PhoneNo1,
-                PhoneNo2 = ph.PhoneNo2,
-                ImagePath = Path.Combine(@"\Files\", ph.Image)
-            });
+                PhoneNo2 = ph.PhoneNo2
+                //ImagePath = Path.Combine(@"\Files\", ph.Image)
+            };
+            var ImagePaths = new List<PathInfo>();
+            foreach (PhoneBook_Image img in ph.Images)
+                ImagePaths.Add(new PathInfo { FileName = img.ImageName,FilePath = Path.Combine(@"\Files\", img.Image) });
+
+            ViewBag.Images = ImagePaths;
+
+            return View(data);
         }
 
         [HttpPost]
@@ -90,7 +112,7 @@ namespace PhB.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                service.Update(phoneBook.Image, new PhoneBook
+                service.Update(phoneBook.Images, new PhoneBook
                 {
                     Id = phoneBook.Id.Value,
                     Address = phoneBook.Address,

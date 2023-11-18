@@ -55,6 +55,10 @@ namespace PhB.Web.Controllers
         public IActionResult login()
         {
             var cookie = Request.Cookies["Language"];
+            if (User.Identity.IsAuthenticated)
+                return RedirectToAction("Index", "phonebook");
+
+
             return View();
         }
         [HttpPost]

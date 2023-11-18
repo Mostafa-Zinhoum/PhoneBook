@@ -22,5 +22,8 @@ namespace PhB.Repo
 
         public DbSet<Job> Jobs { get; set; }
         public DbSet<PhoneBook> PhoneBooks { get; set; }
+        public DbSet<PhoneBook_Image> PhoneBook_Images { get; set; }
+        public DbSet<Governorate> Governorates { get; set; }
+        public DbSet<Center> Centers { get; set; }
     }
 }

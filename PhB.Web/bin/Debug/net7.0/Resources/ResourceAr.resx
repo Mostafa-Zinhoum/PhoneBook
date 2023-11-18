@@ -126,6 +126,9 @@
   <data name="Birthday" xml:space="preserve">
     <value>تاريخ الميلاد</value>
   </data>
+  <data name="Centers" xml:space="preserve">
+    <value>المراكز</value>
+  </data>
   <data name="Confirmpassword" xml:space="preserve">
     <value>تاكيد كلمة المرور</value>
   </data>
@@ -150,17 +153,32 @@
   <data name="Email" xml:space="preserve">
     <value>البريد الالكتروني</value>
   </data>
+  <data name="Governorates" xml:space="preserve">
+    <value>المحافظات</value>
+  </data>
   <data name="Image" xml:space="preserve">
     <value>صورة</value>
   </data>
+  <data name="Images" xml:space="preserve">
+    <value>الصور</value>
+  </data>
   <data name="Job" xml:space="preserve">
     <value>الوظيفة</value>
+  </data>
+  <data name="List" xml:space="preserve">
+    <value>القائمة</value>
   </data>
   <data name="Login" xml:space="preserve">
     <value>الدخول</value>
   </data>
   <data name="Logout" xml:space="preserve">
     <value>الخروج</value>
+  </data>
+  <data name="MainInfo" xml:space="preserve">
+    <value>البيانات الاساسية</value>
+  </data>
+  <data name="MainMenu" xml:space="preserve">
+    <value>القائمة الرئيسية</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>الاسم</value>
@@ -170,6 +188,9 @@
   </data>
   <data name="Password" xml:space="preserve">
     <value>كلمة المرور</value>
+  </data>
+  <data name="PhoneBook" xml:space="preserve">
+    <value>دليل الهاتف</value>
   </data>
   <data name="PhoneNo1" xml:space="preserve">
     <value>تليفون1</value>
